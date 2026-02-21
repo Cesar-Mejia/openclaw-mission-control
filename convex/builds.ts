@@ -55,7 +55,7 @@ export const create = mutation({
     if (args.agent_name) {
       const agent = await ctx.db
         .query("agents")
-        .withIndex("by_name", (q) => q.eq("name", args.agent_name))
+        .withIndex("by_name", (q) => q.eq("name", args.agent_name!))
         .first();
       if (agent) {
         agent_id = agent._id;

@@ -83,8 +83,8 @@ export const reportContent = action({
     file_url: v.optional(v.string()),
     metadata: v.optional(v.any()),
   },
-  handler: async (ctx, args) => {
-    const contentId = await ctx.runMutation(api.content.create, {
+  handler: async (ctx, args): Promise<{ success: boolean; content_id: string }> => {
+    const contentId: string = await ctx.runMutation(api.content.create, {
       agent_name: args.agent_name,
       title: args.title,
       type: args.type,
@@ -113,8 +113,8 @@ export const reportMemory = action({
     tags: v.optional(v.array(v.string())),
     metadata: v.optional(v.any()),
   },
-  handler: async (ctx, args) => {
-    const memoryId = await ctx.runMutation(api.memories.create, {
+  handler: async (ctx, args): Promise<{ success: boolean; memory_id: string }> => {
+    const memoryId: string = await ctx.runMutation(api.memories.create, {
       agent_name: args.agent_name,
       title: args.title,
       content: args.content,
@@ -170,8 +170,8 @@ export const createBuild = action({
     agent_name: v.optional(v.string()),
     metadata: v.optional(v.any()),
   },
-  handler: async (ctx, args) => {
-    const buildId = await ctx.runMutation(api.builds.create, {
+  handler: async (ctx, args): Promise<{ success: boolean; build_id: string }> => {
+    const buildId: string = await ctx.runMutation(api.builds.create, {
       type: args.type,
       agent_name: args.agent_name,
       metadata: args.metadata,
